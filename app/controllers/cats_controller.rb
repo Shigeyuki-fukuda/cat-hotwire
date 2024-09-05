@@ -4,6 +4,7 @@ class CatsController < ApplicationController
   # GET /cats
   def index
     @cats = Cat.all
+    @cats = @cats.page(params[:page])
   end
 
   # GET /cats/1
