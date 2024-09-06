@@ -4,6 +4,9 @@
 
 <h1>Cats</h1>
 
+<%= sort_link(@search, :name) %>
+<%= sort_link(@search, :age) %>
+
 <%= search_form_for @search do |f| %>
   <%= f.label :name_cont, "名前" %>
   <%= f.search_field :name_cont %>
