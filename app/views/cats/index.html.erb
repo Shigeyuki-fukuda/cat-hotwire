@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <%= render @cats %>
+    <%= render partial: 'cats/cat', collection: @cats %>
 
     <div class="d-flex justify-content-end mt-3">
       <%= paginate @cats %>
