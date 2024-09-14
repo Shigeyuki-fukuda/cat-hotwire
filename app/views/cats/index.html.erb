@@ -59,7 +59,7 @@
       <%= turbo_frame_tag Cat.new %>
 
       <div id="cats">
-        <%= render @cats %>
+        <%= render partial: 'cats/cat', collection: @cats %>
       </div>
 
       <div class="d-flex justify-content-end mt-3">
