@@ -1,14 +1,27 @@
-<div class="row py-2 border-top">
-  <div class="col-4 my-auto">
-    <%= cat.name %>
-  </div>
-  <div class="col-4 my-auto">
-    <%= cat.age %>
-  </div>
-  <div class="col-4">
-    <div class="d-flex justify-content-end">
-      <%= link_to "編集", edit_cat_path(cat), class: "btn btn-sm btn-outline-primary me-2" %>
-      <%= button_to "削除", cat, method: :delete, class: "btn btn-sm btn-outline-danger" %>
+<%# turbo_frame_tagの引数にはcatオブジェクトを渡す。
+  そうするとturbo_frame_tagが内部でdom_idを利用して
+  catを"cat_1"のようなidに変換してくれる。
+  _cat.html.erbはCatの数だけレンダリングされるので、
+  <turbo-frame>のidがかぶらないようにオブジェクトを引数に渡す必要がある。
+%>
+
+<%# これらは全て同じ内容 %>
+<%# <%= turbo_frame_tag cat do %>
+<%# <%= turbo_frame_tag dom_id(cat) do %>
+<%# <%= turbo_frame_tag "cat_#{cat.id}" do %>
+<%= turbo_frame_tag cat do %>
+  <div class="row py-2 border-top">
+    <div class="col-4 my-auto">
+      <%= cat.name %>
+    </div>
+    <div class="col-4 my-auto">
+      <%= cat.age %>
+    </div>
+    <div class="col-4">
+      <div class="d-flex justify-content-end">
+        <%= link_to "編集", edit_cat_path(cat), class: "btn btn-sm btn-outline-primary me-2" %>
+        <%= link_to "削除", cat, class: "btn btn-sm btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
