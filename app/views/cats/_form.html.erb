@@ -1,27 +1,12 @@
-<%= form_with(model: cat) do |form| %>
-  <% if cat.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(cat.errors.count, "error") %> prohibited this cat from being saved:</h2>
+<%# bootstrap_formを使ったフォームでは、form_withの代わりにbootstrap_form_withを使う %>
+<%# バリデーションエラーの表示はbootstrap_formが用意してくれるので、自前で用意する必要なし %>
+<%= bootstrap_form_with(model: cat) do |form| %>
 
-      <ul>
-        <% cat.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%# ラベルはbootstrap_formが用意してくれるので、自前で用意する必要なし %>
+  <%# Bootstrapのclass属性もbootstrap_formが設定してくれるので、自前で用意する必要はない %>
+  <%= form.text_field :name %>
+  <%= form.number_field :age %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :age, style: "display: block" %>
-    <%= form.number_field :age %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%# Bootstrapのprimary色のsubmitボタン %>
+  <%= form.primary %>
 <% end %>
