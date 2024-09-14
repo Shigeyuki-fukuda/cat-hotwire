@@ -38,6 +38,7 @@ class CatsController < ApplicationController
     if @cat.update(cat_params)
       redirect_to @cat, notice: "ねこを更新しました。", status: :see_other
     else
+      # Turboを使う際には、バリデーションエラーでHTMLをレスポンスする時に、422 unprocessable_entityステータスコードを返す必要がある
       render :edit, status: :unprocessable_entity
     end
   end
