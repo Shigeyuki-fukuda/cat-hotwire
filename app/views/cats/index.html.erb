@@ -12,7 +12,15 @@
 
   <div class="card-body">
     <!-- 一覧と同じturbo_frameのkeyを検索フォームにも指定して一覧部分のみ更新されるようにしている -->
-    <%= search_form_for @search, html: { data: { turbo_frame: "cats-list" } } do |f| %>
+    <%= search_form_for(
+      @search,
+      html: {
+        data: {
+          turbo_frame: "cats-list",
+          controller: "form",
+          action: "input->form#submit"
+        }
+      }) do |f| %>
       <div class="row g3 mb-3">
         <div class="col-4 col-xl-2">
           <%= f.label :name_cont, "名前", class: "form-label" %>
@@ -23,7 +31,6 @@
           <%= f.search_field :age_eq, class: "form-control" %>
         </div>
         <div class="col-4 d-flex align-items-end">
-          <%= button_tag(icon_with_text("search", "検索"), class: "btn btn-primary me-1") %>
           <%= link_to "リセット", cats_path, class: "btn btn-outline-secondary" %>
         </div>
       </div>
