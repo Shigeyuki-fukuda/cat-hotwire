@@ -19,6 +19,7 @@ module ApplicationHelper
   end
 
   def turbo_stream_flash
-    turbo_stream.update "flash", partial: "flash"
+    # 複数Toastを同時に表示できるようにappendを使う
+    turbo_stream.append "flashes", partial: "flash"
   end
 end
