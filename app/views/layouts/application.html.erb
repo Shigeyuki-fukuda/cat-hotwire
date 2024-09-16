@@ -30,9 +30,6 @@
           </div>
 
           <div class="col my-4">
-            <div id="flash">
-              <%= render "flash" %>
-            </div>
             <%= yield %>
           </div>
         </div>
@@ -42,5 +39,6 @@
     <%# 編集・登録リンクをクリックすると、ここにサーバーから取得したモーダルが置換される %>
     <%# モーダルの置き場所はどこでもいいので、とりあえず<body>の一番下に置いておく %>
     <%= turbo_frame_tag "modal" %>
+    <div id="flashes" class="position-fixed top-0 end-0" style="margin: 0.75rem"></div>
   </body>
 </html>
