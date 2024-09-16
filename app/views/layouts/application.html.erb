@@ -3,6 +3,8 @@
   <head>
     <title><%= content_for(:title) || "Cat Hotwire" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%# JavaScript周りで予期しないバグが発生させたりすることもあるためTurboのキャッシュを無効化しておく %>
+    <meta name="turbo-cache-control" content="no-cache">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -36,5 +38,9 @@
         </div>
       </div>
     </div>
+    <%# 編集・登録リンクのTurbo Framesのターゲット %>
+    <%# 編集・登録リンクをクリックすると、ここにサーバーから取得したモーダルが置換される %>
+    <%# モーダルの置き場所はどこでもいいので、とりあえず<body>の一番下に置いておく %>
+    <%= turbo_frame_tag "modal" %>
   </body>
 </html>
